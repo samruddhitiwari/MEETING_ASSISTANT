@@ -1,0 +1,59 @@
+<!-- templates/transcripts.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-file-alt"></i> Meeting Transcripts</h2>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> New Upload
+    </a>
+</div>
+
+{% if transcripts %}
+<div class="row">
+    {% for transcript in transcripts %}
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">{{ transcript[2] }}</h6>
+                <small class="text-muted">{{ transcript[5] }}</small>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Original:</strong> {{ transcript[2] }}<br>
+                    <strong>Status:</strong> 
+                    {% if transcript[6] %}
+                        <span class="badge bg-success">Indexed</span>
+                    {% else %}
+                        <span class="badge bg-warning">Not Indexed</span>
+                    {% endif %}
+                </p>
+                <div class="btn-group" role="group">
+                    <a href="{{ url_for('view_transcript', transcript_id=transcript[0]) }}" 
+                       class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-eye"></i> View
+                    </a>
+                    {% if not transcript[4] %}
+                    <a href="{{ url_for('summarize_transcript', transcript_id=transcript[0]) }}" 
+                       class="btn btn-sm btn-outline-success">
+                        <i class="fas fa-compress-alt"></i> Summarize
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
+    <h4>No transcripts yet</h4>
+    <p class="text-muted">Upload your first meeting file to get started!</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">
+        <i class="fas fa-upload"></i> Upload Now
+    </a>
+</div>
+{% endif %}
+{% endblock %}
+
