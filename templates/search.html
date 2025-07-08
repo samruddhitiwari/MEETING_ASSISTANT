@@ -1,0 +1,54 @@
+<!-- templates/search.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-search"></i> Search Meetings</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="query" class="form-label">Ask a question about your meetings</label>
+                        <input type="text" class="form-control" id="query" name="query" 
+                               placeholder="e.g., What marketing strategy was discussed?" required>
+                        <div class="form-text">
+                            Search through all your indexed transcripts with natural language queries.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Example Queries</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-question-circle text-primary"></i> What marketing strategy was discussed?</li>
+                            <li><i class="fas fa-question-circle text-primary"></i> Who was responsible for the project?</li>
+                            <li><i class="fas fa-question-circle text-primary"></i> What deadlines were mentioned?</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-question-circle text-primary"></i> What budget was allocated?</li>
+                            <li><i class="fas fa-question-circle text-primary"></i> What are the next steps?</li>
+                            <li><i class="fas fa-question-circle text-primary"></i> What concerns were raised?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
