@@ -1,0 +1,56 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-upload"></i> Upload Meeting File</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select Audio/Video File</label>
+                        <input type="file" class="form-control" id="file" name="file" 
+                               accept=".mp4,.wav,.mp3,.avi,.mov" required>
+                        <div class="form-text">
+                            Supported formats: MP4, WAV, MP3, AVI, MOV
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload and Transcribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3><i class="fas fa-list"></i> Features</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-file-audio text-primary"></i> Audio Processing</h5>
+                        <p>Upload audio or video files and get accurate transcriptions using AI.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-compress-alt text-success"></i> Smart Summaries</h5>
+                        <p>Generate concise summaries of your meetings automatically.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-search text-info"></i> Intelligent Search</h5>
+                        <p>Search through all your meeting transcripts with natural language queries.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-folder text-warning"></i> Organized Storage</h5>
+                        <p>All files are automatically organized by date for easy retrieval.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
