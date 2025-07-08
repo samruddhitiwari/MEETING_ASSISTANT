@@ -1,0 +1,63 @@
+<!-- templates/view_transcript.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-file-alt"></i> {{ transcript[2] }}</h2>
+    <div>
+        {% if not transcript[4] %}
+        <a href="{{ url_for('summarize_transcript', transcript_id=transcript[0]) }}" 
+           class="btn btn-success">
+            <i class="fas fa-compress-alt"></i> Generate Summary
+        </a>
+        {% endif %}
+        <a href="{{ url_for('transcripts') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-file-alt"></i> Transcript</h5>
+            </div>
+            <div class="card-body">
+                <div class="transcript-content" style="max-height: 500px; overflow-y: auto;">
+                    {{ transcript_text|replace('\n', '<br>')|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> Details</h6>
+            </div>
+            <div class="card-body">
+                <p><strong>Original File:</strong> {{ transcript[2] }}</p>
+                <p><strong>Created:</strong> {{ transcript[5] }}</p>
+                <p><strong>Status:</strong> 
+                    {% if transcript[6] %}
+                        <span class="badge bg-success">Indexed</span>
+                    {% else %}
+                        <span class="badge bg-warning">Not Indexed</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        
+        {% if summary_text %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6><i class="fas fa-compress-alt"></i> Summary</h6>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ summary_text }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
